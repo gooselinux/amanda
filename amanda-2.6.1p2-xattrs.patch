@@ -1,0 +1,61 @@
+diff -up amanda-2.6.1p2/application-src/amgtar_perl.pl.xattrs amanda-2.6.1p2/application-src/amgtar_perl.pl
+--- amanda-2.6.1p2/application-src/amgtar_perl.pl.xattrs	2010-01-20 16:25:16.000000000 +0100
++++ amanda-2.6.1p2/application-src/amgtar_perl.pl	2010-01-20 16:26:54.000000000 +0100
+@@ -114,7 +114,7 @@ sub command_estimate {
+          }
+       }
+       my($size) = -1;
+-      my(@cmd) = ($self->{runtar}, $self->{'config'}, $self->{'gnutar'}, "--create", "--directory", $self->{'device'}, "--listed-incremental", "$self->{gnulist}/${listdir}_${level}.new", "--sparse", "--one-file-system", "--ignore-failed-read", "--totals", "--file", "/dev/null", ".");
++      my(@cmd) = ($self->{runtar}, $self->{'config'}, $self->{'gnutar'}, "--create", "--directory", $self->{'device'}, "--listed-incremental", "$self->{gnulist}/${listdir}_${level}.new", "--sparse", "--xattrs", "--one-file-system", "--ignore-failed-read", "--totals", "--file", "/dev/null", ".");
+       debug("cmd:" . join(" ", @cmd));
+       my $wtrfh;
+       my $estimate_fd = Symbol::gensym;
+@@ -180,7 +180,7 @@ sub command_backup {
+    if(defined($self->{index})) {
+       $verbose = "--verbose";
+    }
+-   my(@cmd) = ($self->{runtar}, $self->{config}, $self->{gnutar}, "--create", $verbose, "--directory", $self->{device}, "--listed-incremental", "$self->{gnulist}/${listdir}_${level}.new", "--sparse", "--one-file-system", "--ignore-failed-read", "--totals", "--file", "-", ".");
++   my(@cmd) = ($self->{runtar}, $self->{config}, $self->{gnutar}, "--create", $verbose, "--directory", $self->{device}, "--listed-incremental", "$self->{gnulist}/${listdir}_${level}.new", "--sparse", "--xattrs", "--one-file-system", "--ignore-failed-read", "--totals", "--file", "-", ".");
+ 
+    debug("cmd:" . join(" ", @cmd));
+ 
+diff -up amanda-2.6.1p2/client-src/sendbackup-gnutar.c.xattrs amanda-2.6.1p2/client-src/sendbackup-gnutar.c
+--- amanda-2.6.1p2/client-src/sendbackup-gnutar.c.xattrs	2008-12-01 22:17:16.000000000 +0100
++++ amanda-2.6.1p2/client-src/sendbackup-gnutar.c	2010-01-20 16:23:17.000000000 +0100
+@@ -520,7 +520,7 @@ start_backup(
+ 	if (nb_exclude > 0) file_exclude = build_exclude(dle, 0);
+ 	if (nb_include > 0) file_include = build_include(dle, 0);
+ 
+-	my_argv = alloc(SIZEOF(char *) * (22 + (nb_exclude*2)+(nb_include*2)));
++	my_argv = alloc(SIZEOF(char *) * (23 + (nb_exclude*2)+(nb_include*2)));
+ 
+ 	cmd = vstralloc(amlibexecdir, "/", "runtar", versionsuffix(), NULL);
+ 	info_tapeheader(dle);
+@@ -561,6 +561,7 @@ start_backup(
+ 	my_argv[i++] = "--atime-preserve";
+ #endif
+ 	my_argv[i++] = "--sparse";
++	my_argv[i++] = "--xattrs";
+ 	my_argv[i++] = "--ignore-failed-read";
+ 	my_argv[i++] = "--totals";
+ 
+diff -up amanda-2.6.1p2/client-src/sendsize.c.xattrs amanda-2.6.1p2/client-src/sendsize.c
+--- amanda-2.6.1p2/client-src/sendsize.c.xattrs	2009-11-05 20:57:09.000000000 +0100
++++ amanda-2.6.1p2/client-src/sendsize.c	2010-01-20 16:23:17.000000000 +0100
+@@ -1931,7 +1931,7 @@ getsize_gnutar(
+     if(nb_exclude > 0) file_exclude = build_exclude(dle, 0);
+     if(nb_include > 0) file_include = build_include(dle, 0);
+ 
+-    my_argv = alloc(SIZEOF(char *) * 22);
++    my_argv = alloc(SIZEOF(char *) * 23);
+     i = 0;
+ 
+     gnutar_list_dir = getconf_str(CNF_GNUTAR_LIST_DIR);
+@@ -2070,6 +2070,7 @@ getsize_gnutar(
+     my_argv[i++] = "--atime-preserve";
+ #endif
+     my_argv[i++] = "--sparse";
++    my_argv[i++] = "--xattrs";
+     my_argv[i++] = "--ignore-failed-read";
+     my_argv[i++] = "--totals";
+ 

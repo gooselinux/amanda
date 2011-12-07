@@ -1,0 +1,12 @@
+New user name was introduced in 2.5.2.p1-9.
+See https://bugzilla.redhat.com/124510 for details.
+
+Amanda's RPMs contain scriptlets for automatic
+transition to new 'amandabackup' user name.
+Update of files /etc/amanda/*/amanda.conf,
+/var/lib/amanda/.amandahosts, /etc/xinetd.d/amanda
+as well as renaming /var/spool/cron/amanda
+is handled by these scriptlets. Original files
+are backed up with .usernameupdate extension.
+
+Other needed changes must be done manually...

@@ -1,0 +1,23 @@
+# default: off
+# description:  The client for the Amanda backup system.\
+#               This must be on for systems being backed up\
+#               by Amanda.
+
+service amanda
+{
+	socket_type		= dgram
+	protocol		= udp
+	wait			= yes
+	user			= amandabackup
+	group			= disk
+	server			= /usr/sbin/amandad
+# Configure server_args for the authentication type you will be using,
+# and the services you wish to allow the amanda server and/or recovery
+# clients to use.
+#
+# Change the -auth= entry to reflect the authentication type you use.
+# Add amindexd to allow recovery clients to access the index database.
+# Add amidxtaped to allow recovery clients to access the tape device.
+	server_args		= -auth=bsd amdump
+	disable			= yes
+}

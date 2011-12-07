@@ -1,0 +1,204 @@
+--- amanda-2.6.0p2/amandad-src/Makefile.am.pie	2008-03-25 14:23:05.000000000 -0600
++++ amanda-2.6.0p2/amandad-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -18,6 +18,9 @@
+ 
+ amlibexec_PROGRAMS =	amandad
+ 
++amandad_CFLAGS = -fPIE $(AM_CFLAGS)
++amandad_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ libamandad_la_SOURCES= amandad_util.c
+ libamandad_la_LDFLAGS = -release $(VERSION)
+ libamandad_la_LIBADD = ../common-src/libamanda.la
+--- amanda-2.6.0p2/changer-src/Makefile.am.pie	2008-03-06 05:26:45.000000000 -0700
++++ amanda-2.6.0p2/changer-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -18,10 +18,14 @@
+ 
+ if WANT_CHG_SCSI_CHIO
+ CHIO_SCSI = chg-scsi-chio
++chg_scsi_chio_CFLAGS = -fPIE $(AM_CFLAGS)
++chg_scsi_chio_LDFLAGS = -pie $(AM_LDFLAGS)
+ endif
+ 
+ if WANT_CHG_SCSI
+ CHG_SCSI = chg-scsi
++chg_scsi_CFLAGS = -fPIE $(AM_CFLAGS)
++chg_scsi_LDFLAGS = -pie $(AM_LDFLAGS)
+ endif
+ 
+ amlibexec_PROGRAMS =	$(CHG_SCSI)
+--- amanda-2.6.0p2/client-src/Makefile.am.pie	2008-05-20 11:02:07.000000000 -0600
++++ amanda-2.6.0p2/client-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -20,6 +20,25 @@
+ 
+ amlibexec_PROGRAMS =	noop calcsize killpgrp rundump runtar selfcheck sendbackup sendsize versionsuffix
+ 
++noop_CFLAGS = -fPIE $(AM_CFLAGS)
++noop_LDFLAGS = -pie $(AM_LDFLAGS)
++calcsize_CFLAGS = -fPIE $(AM_CFLAGS)
++calcsize_LDFLAGS = -pie $(AM_LDFLAGS)
++killpgrp_CFLAGS = -fPIE $(AM_CFLAGS)
++killpgrp_LDFLAGS = -pie $(AM_LDFLAGS)
++rundump_CFLAGS = -fPIE $(AM_CFLAGS)
++rundump_LDFLAGS = -pie $(AM_LDFLAGS)
++runtar_CFLAGS = -fPIE $(AM_CFLAGS)
++runtar_LDFLAGS = -pie $(AM_LDFLAGS)
++selfcheck_CFLAGS = -fPIE $(AM_CFLAGS)
++selfcheck_LDFLAGS = -pie $(AM_LDFLAGS)
++sendbackup_CFLAGS = -fPIE $(AM_CFLAGS)
++sendbackup_LDFLAGS = -pie $(AM_LDFLAGS)
++sendsize_CFLAGS = -fPIE $(AM_CFLAGS)
++sendsize_LDFLAGS = -pie $(AM_LDFLAGS)
++versionsuffix_CFLAGS = -fPIE $(AM_CFLAGS)
++versionsuffix_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ amlibexec_SCRIPTS = patch-system
+ 
+ CHECK_PERL = $(sbin_SCRIPTS)
+--- amanda-2.6.0p2/device-src/Makefile.am.pie	2008-03-25 14:23:05.000000000 -0600
++++ amanda-2.6.0p2/device-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -52,6 +52,8 @@
+ if WANT_S3_DEVICE
+ sbin_PROGRAMS += activate-devpay
+ activate_devpay_SOURCES = activate-devpay.c
++activate_devpay_CFLAGS = -fPIE $(AM_CFLAGS)
++activate_devpay_LDFLAGS = -pie $(AM_LDFLAGS)
+ endif
+ 
+ ## headers
+--- amanda-2.6.0p2/oldrecover-src/Makefile.am.pie	2008-03-25 14:23:05.000000000 -0600
++++ amanda-2.6.0p2/oldrecover-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -18,6 +18,9 @@
+ 
+ sbin_PROGRAMS =		amoldrecover
+ 
++amoldrecover_CFLAGS = -fPIE $(AM_CFLAGS)
++amoldrecover_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ ###
+ # Because libamanda includes routines (e.g. regex) provided by some system
+ # libraries, and because of the way libtool sets up the command line, we
+--- amanda-2.6.0p2/recover-src/Makefile.am.pie	2008-03-25 14:23:05.000000000 -0600
++++ amanda-2.6.0p2/recover-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -18,6 +18,9 @@
+ 
+ sbin_PROGRAMS =		amrecover
+ 
++amrecover_CFLAGS = -fPIE $(AM_CFLAGS)
++amrecover_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ ###
+ # Because libamanda includes routines (e.g. regex) provided by some system
+ # libraries, and because of the way libtool sets up the command line, we
+--- amanda-2.6.0p2/restore-src/Makefile.am.pie	2008-01-17 17:31:34.000000000 -0700
++++ amanda-2.6.0p2/restore-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -21,8 +21,16 @@
+ 
+ sbin_PROGRAMS = 	amrestore amfetchdump
+ 
++amrestore_CFLAGS = -fPIE $(AM_CFLAGS)
++amrestore_LDFLAGS = -pie $(AM_LDFLAGS)
++amfetchdump_CFLAGS = -fPIE $(AM_CFLAGS)
++amfetchdump_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ amlibexec_PROGRAMS = 	amidxtaped
+ 
++amidxtaped_CFLAGS = -fPIE $(AM_CFLAGS)
++amidxtaped_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ ###
+ # Because libamanda includes routines (e.g. regex) provided by some system
+ # libraries, and because of the way libtool sets up the command line, we
+--- amanda-2.6.0p2/server-src/Makefile.am.pie	2008-03-25 14:23:05.000000000 -0600
++++ amanda-2.6.0p2/server-src/Makefile.am	2008-10-10 10:45:11.000000000 -0600
+@@ -24,6 +24,25 @@
+ 			amservice	amtape		\
+ 			amreport
+ 
++amadmin_CFLAGS = -fPIE $(AM_CFLAGS)
++amadmin_LDFLAGS = -pie $(AM_LDFLAGS)
++amcheck_CFLAGS = -fPIE $(AM_CFLAGS)
++amcheck_LDFLAGS = -pie $(AM_LDFLAGS)
++amflush_CFLAGS = -fPIE $(AM_CFLAGS)
++amflush_LDFLAGS = -pie $(AM_LDFLAGS)
++amgetconf_CFLAGS = -fPIE $(AM_CFLAGS)
++amgetconf_LDFLAGS = -pie $(AM_LDFLAGS)
++amlabel_CFLAGS = -fPIE $(AM_CFLAGS)
++amlabel_LDFLAGS = -pie $(AM_LDFLAGS)
++amtape_CFLAGS = -fPIE $(AM_CFLAGS)
++amtape_LDFLAGS = -pie $(AM_LDFLAGS)
++amreport_CFLAGS = -fPIE $(AM_CFLAGS)
++amreport_LDFLAGS = -pie $(AM_LDFLAGS)
++amflush_CFLAGS = -fPIE $(AM_CFLAGS)
++amflush_LDFLAGS = -pie $(AM_LDFLAGS)
++amservice_CFLAGS = -fPIE $(AM_CFLAGS)
++amservice_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ noinst_PROGRAMS = taper_source_test
+ 
+ amlibexec_PROGRAMS =	amindexd	amlogroll	amtrmidx	\
+@@ -31,6 +46,29 @@
+ 			planner		taper		amcleanupdisk	\
+ 			chunker
+ 
++amindexd_CFLAGS = -fPIE $(AM_CFLAGS)
++amindexd_LDFLAGS = -pie $(AM_LDFLAGS)
++amcleanupdisk_CFLAGS = -fPIE $(AM_CFLAGS)
++amcleanupdisk_LDFLAGS = -pie $(AM_LDFLAGS)
++amlogroll_CFLAGS = -fPIE $(AM_CFLAGS)
++amlogroll_LDFLAGS = -pie $(AM_LDFLAGS)
++amtrmidx_CFLAGS = -fPIE $(AM_CFLAGS)
++amtrmidx_LDFLAGS = -pie $(AM_LDFLAGS)
++amtrmlog_CFLAGS = -fPIE $(AM_CFLAGS)
++amtrmlog_LDFLAGS = -pie $(AM_LDFLAGS)
++driver_CFLAGS = -fPIE $(AM_CFLAGS)
++driver_LDFLAGS = -pie $(AM_LDFLAGS)
++dumper_CFLAGS = -fPIE $(AM_CFLAGS)
++dumper_LDFLAGS = -pie $(AM_LDFLAGS)
++planner_CFLAGS = -fPIE $(AM_CFLAGS)
++planner_LDFLAGS = -pie $(AM_LDFLAGS)
++taper_CFLAGS = -fPIE $(AM_CFLAGS)
++taper_LDFLAGS = -pie $(AM_LDFLAGS)
++amclenupdisk_CFLAGS = -fPIE $(AM_CFLAGS)
++amclenupdisk_LDFLAGS = -pie $(AM_LDFLAGS)
++chunker_CFLAGS = -fPIE $(AM_CFLAGS)
++chunker_LDFLAGS = -pie $(AM_LDFLAGS)
++
+ # Exclude scripts which depend on perl extension modules from the syntax checks
+ CHECK_PERL = \
+ 	    amaddclient \
+diff -up ./Makefile.am.pie ./Makefile.am
+--- amanda-2.6.1p2/application-src/Makefile.am.pie   2009-01-21 22:34:32.000000000 +0100
++++ amanda-2.6.1p2/application-src/Makefile.am       2010-04-22 12:30:52.478376667 +0200
+@@ -31,6 +31,8 @@ SCRIPTS_PERL = $(CHECK_PERL)
+ SCRIPTS_SHELL = $(amlibexec_SCRIPTS)
+ 
+ amlibexec_PROGRAMS = teecount
++teecount_CFLAGS = -fPIE $(AM_CFLAGS)
++teecount_LDFLAGS = -pie $(AM_LDFLAGS)
+ 
+ #We use two variables, applicationdir applicationexecdir, to segregate the
+ #platform-independent (applicationdir) files installed by install-data from the
+@@ -42,6 +44,10 @@ amlibexec_PROGRAMS = teecount
+ applicationexecdir = $(APPLICATION_DIR)
+ applicationdir = $(APPLICATION_DIR)
+ applicationexec_PROGRAMS = amgtar amstar
++amgtar_CFLAGS = -fPIE $(AM_CFLAGS)
++amgtar_LDFLAGS = -pie $(AM_LDFLAGS)
++amstar_CFLAGS = -fPIE $(AM_CFLAGS)
++amstar_LDFLAGS = -pie $(AM_LDFLAGS)
+ applicationexec_SCRIPTS = $(SCRIPTS_PERL)
+ 
+ LDADD = ../common-src/libamanda.$(LIB_EXTENSION) \
+diff -up ./Makefile.am.pie ./Makefile.am
+--- amanda-2.6.1p2/amar-src/Makefile.am.pie   2008-12-01 22:17:19.000000000 +0100
++++ amanda-2.6.1p2/amar-src/Makefile.am       2010-04-22 12:13:42.337376545 +0200
+@@ -25,6 +25,8 @@ noinst_HEADERS = \
+ 	amar.h
+ 
+ sbin_PROGRAMS = amarchiver
++amarchiver_CFLAGS = -fPIE $(AM_CFLAGS)
++amarchiver_LDFLAGS = -pie $(AM_LDFLAGS)
+ 
+ amarchiver_SOURCES = amarchiver.c
+ amarchiver_LDADD = libamar.la

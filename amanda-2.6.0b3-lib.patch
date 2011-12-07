@@ -1,0 +1,31 @@
+--- amanda-2.6.0b3-20080314/config/amanda/krb4-security.m4.lib	2008-01-17 17:31:33.000000000 -0700
++++ amanda-2.6.0b3-20080314/config/amanda/krb4-security.m4	2008-03-27 14:36:27.000000000 -0600
+@@ -181,7 +181,7 @@
+                 else
+                     AMANDA_ADD_CPPFLAGS([-I$dir/include])
+                 fi
+-                AMANDA_ADD_LDFLAGS([-L$dir/lib])
++                #AMANDA_ADD_LDFLAGS([-L$dir/lib])
+                 AMANDA_ADD_LIBS([-lkrb -ldes])
+                 if test -f ${dir}/lib/libcom_err.a; then
+                     AMANDA_ADD_LIBS([-lcom_err])
+@@ -196,7 +196,7 @@
+                 AC_MSG_RESULT(found in $dir)
+                 found="yes"
+                 AMANDA_ADD_CPPFLAGS([-I$dir/include -I$dir/include/kerberosIV])
+-                AMANDA_ADD_LDFLAGS([-L$dir/lib])
++                #AMANDA_ADD_LDFLAGS([-L$dir/lib])
+                 if test \( -f ${dir}/lib/libkrb5.a -o -f ${dir}/lib/libkrb5.so \) &&
+                    test \( -f ${dir}/lib/libcom_err.a -o -f ${dir}/lib/libcom_err.so \) ; then
+                     AMANDA_ADD_LIBS([-lkrb4 -lkrb5 -lcrypto -ldes425 -lcom_err])
+--- amanda-2.6.0b3-20080314/config/amanda/krb5-security.m4.lib	2008-01-17 17:31:33.000000000 -0700
++++ amanda-2.6.0b3-20080314/config/amanda/krb5-security.m4	2008-03-27 14:37:25.000000000 -0600
+@@ -90,7 +90,7 @@
+                 AMANDA_ADD_CPPFLAGS([-I$KRB5_DIR_FOUND/include])
+             fi
+                 AC_CHECK_LIB(krb5support,main)
+-            AMANDA_ADD_LDFLAGS([-L$KRB5_LIBDIR_FOUND])
++            #AMANDA_ADD_LDFLAGS([-L$KRB5_LIBDIR_FOUND])
+ 
+             AC_DEFINE(KRB5_SECURITY,1,
+                 [Define if Kerberos 5 security is to be enabled. ])

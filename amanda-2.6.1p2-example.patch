@@ -1,0 +1,16 @@
+diff -up amanda-2.6.1p2/example/Makefile.am.example amanda-2.6.1p2/example/Makefile.am
+--- amanda-2.6.1p2/example/Makefile.am.example	2008-12-22 19:13:55.000000000 +0100
++++ amanda-2.6.1p2/example/Makefile.am	2010-01-20 13:47:02.000000000 +0100
+@@ -4,9 +4,9 @@ include $(top_srcdir)/config/automake/va
+ include $(top_srcdir)/config/automake/installperms.am
+ 
+ amanda_dir    = $(amdatadir)
+-templatedir   = $(amanda_dir)/template.d
+-exampledir    = $(amanda_dir)/example
+-lbltempldir   = $(amanda_dir)/example/label-templates
++templatedir   = $(localstatedir)/lib/amanda/template.d
++exampledir    = $(sysconfdir)/amanda/example
++lbltempldir   = $(sysconfdir)/amanda/example/label-templates
+ 
+ EXTRA_DIST +=	chg-multi.conf \
+ 		chg-scsi.conf \

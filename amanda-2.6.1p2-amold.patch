@@ -1,0 +1,29 @@
+diff -up amanda-2.6.1p2/man/amrecover.8.amold amanda-2.6.1p2/man/amrecover.8
+--- amanda-2.6.1p2/man/amrecover.8.amold	2009-11-05 21:15:15.000000000 +0100
++++ amanda-2.6.1p2/man/amrecover.8	2010-06-23 12:25:43.165723523 +0200
+@@ -23,6 +23,8 @@ amrecover \- \fIAmanda\fR index database
+ .SH "SYNOPSIS"
+ .HP \w'\fBamrecover\fR\ 'u
+ \fBamrecover\fR [\-C\ \fIconfig\fR] [\-s\ \fIindex\-server\fR] [\-t\ \fItape\-server\fR] [\-d\ \fItape\-device\fR] [\-o\ \fIconfigoption\fR]...
++.HP \w'\fBamoldrecover\fR\ 'u
++\fBamoldrecover\fR [\-C\ \fIconfig\fR] [\-s\ \fIindex\-server\fR] [\-t\ \fItape\-server\fR] [\-d\ \fItape\-device\fR]...
+ .SH "DESCRIPTION"
+ .PP
+ \fBAmrecover\fR
+@@ -43,6 +45,8 @@ file and the
+ file\&. If no configuration name is supplied on the command line, Amrecover will try the compiled\-in default configuration ,usually
+ \fBDailySet1\fR\&.
+ .PP
++Amanda 2.5.1 introduced a new recover protocol. Backup communication works with any combination of versions, but 2.5.1´s amrecover cannot communicate with an older server. Use amoldrecover on 2.5.1 and higher clients when communicating with an older server.
++.PP
+ See the
+ \fBamanda\fR(8)
+ man page for more details about
+@@ -495,3 +499,7 @@ If set, $AMANDA_TAPE_SERVER will be used
+ \fBAlan M\&. McIvor\fR <\&alan@kauri\&.auck\&.irl\&.cri\&.nz\&>
+ .PP
+ \fBStefan G\&. Weichinger\fR <\&sgw@amanda\&.org\&>
++.PP
++\fBDustin J\&. Mitchell\fR <\&dustin@zmanda\&.com\&>
++.RS 4
++Zmanda, Inc\&. (http://www\&.zmanda\&.com)

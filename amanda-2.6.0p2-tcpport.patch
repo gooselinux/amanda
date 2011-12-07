@@ -1,0 +1,21 @@
+diff -up amanda-2.6.0p2/example/amanda-client.conf.in.tcpp amanda-2.6.0p2/example/amanda-client.conf.in
+--- amanda-2.6.0p2/example/amanda-client.conf.in.tcpp	2009-04-06 16:46:35.000000000 +0200
++++ amanda-2.6.0p2/example/amanda-client.conf.in	2009-04-06 16:46:51.000000000 +0200
+@@ -22,3 +22,5 @@ auth "bsdtcp"
+ 
+ ssh_keys ""			# your ssh keys file if you use ssh auth
+ 
++#resolves "resource temporarily unavailable" bug
++unreserved-tcp-port 1025,65535
+\ No newline at end of file
+diff -up amanda-2.6.0p2/example/amanda.conf.in.tcpp amanda-2.6.0p2/example/amanda.conf.in
+--- amanda-2.6.0p2/example/amanda.conf.in.tcpp	2009-04-06 16:46:19.000000000 +0200
++++ amanda-2.6.0p2/example/amanda.conf.in	2009-04-06 16:47:10.000000000 +0200
+@@ -730,3 +730,6 @@ define interface local {
+ # configurations.
+ 
+ #includefile "@CONFIG_DIR@/amanda.conf.main"
++
++#resolves "resource temporarily unavailable" bug
++unreserved-tcp-port 1025,65535
+\ No newline at end of file

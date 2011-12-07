@@ -1,0 +1,29 @@
+# Allow access to amanda over the network. See 'man amanda'
+
+# 'ambackup' connects to 'amandad'. If your 'disklist' is correctly
+# set up, i.e. if it does not use 'localhost' but the fully qualified
+# domain name (FQDN) of the target machine, then you must put
+# the FQDN here. 'ambackup' must be run by user 'amandabackup', so we allow
+# access by user 'amandabackup'. Do not forget to add an 'only_from' line to
+# '/etc/xinet.d/amanda' to allow access to 'amandad' only from known
+# IP addresses.
+
+# replace mymachine.mydomain by the correct value and uncomment
+# mymachine.mydomain amandabackup
+
+
+# 'amrecover' connects to 'amandaidx', which uses the fully qualified
+# domain name when access is done from another machine. 'amrecover'
+# must be run by user 'root', so we allow access by user 'root'.
+
+# replace mymachine.mydomain by the correct value and uncomment
+# mymachine.mydomain root
+
+
+# 'amrecover' connects to 'amandaidx', which uses the bare machine
+# name w/o domain name when access is done from the same machine.
+# 'amrecover' must be run by user 'root', so we allow access by user
+# 'root'.
+
+# replace mymachine by the correct value and uncomment
+# mymachine root

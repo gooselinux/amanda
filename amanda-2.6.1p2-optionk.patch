@@ -1,0 +1,11 @@
+diff -up amanda-2.6.1p2/restore-src/amfetchdump.c.optionk amanda-2.6.1p2/restore-src/amfetchdump.c
+--- amanda-2.6.1p2/restore-src/amfetchdump.c.optionk	2009-05-22 21:20:45.000000000 +0200
++++ amanda-2.6.1p2/restore-src/amfetchdump.c	2010-05-28 11:35:22.746890186 +0200
+@@ -89,7 +89,6 @@ usage(void)
+     g_fprintf(stderr, _("  -i <dst_file> Search through tapes and write out an inventory while we\n     restore.  Useful only if normal logs are unavailable.\n"));
+     g_fprintf(stderr, _("  -w Wait to put split dumps together until all chunks have been restored.\n"));
+     g_fprintf(stderr, _("  -n Do not reassemble split dumpfiles.\n"));
+-    g_fprintf(stderr, _("  -k Skip the rewind/label read when reading a new tape.\n"));
+     g_fprintf(stderr, _("  -s Do not use fast forward to skip files we won't restore.  Use only if fsf\n     causes your tapes to skip too far.\n"));
+     g_fprintf(stderr, _("  -b <blocksize> Force a particular block size (default is 32kb).\n"));
+     exit(1);
